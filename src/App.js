@@ -9,7 +9,7 @@ const ItemList = () => (<ul>
 
 const App = () => (<div>
   <h1>Things To Do</h1>
-  <ItemList/>
+  <ItemList />
 </div>);
 
 export default App;
