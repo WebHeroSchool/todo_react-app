@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import {count, length} from '.numbers';
+import {count, length} from './numbers';
 
 function App() {
   return ( 
