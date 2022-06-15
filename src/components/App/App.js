@@ -3,14 +3,25 @@ import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
 
-const todoItem = 'Create new app';
+const App = () => {
+    const items = [
+      {
+          value: 'Create new app'
+      },
+      {
+          value: 'Finish that lesson'
+      },
+      {
+          value: 'Listen webinar'
+      }
+    ];
 
-const App = () => (
-  <div>
-    <h1>todos</h1>
-    <InputItem />
-    <ItemList todoItem={todoItem} />
-    <Footer count={3} />
-  </div>);
-
+    return (
+    <div>
+      <h1>todos</h1>
+      <InputItem />
+      <ItemList items={items} />
+      <Footer count={3} />
+    </div>);
+}
 export default App;
