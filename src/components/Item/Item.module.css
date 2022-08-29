@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.IatemList {
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.done {
+  color: #c4c4c4;
+  text-decoration: line-through;
+}
+
+.delete {
+  justify-content: space-between;
+  flex: 100;
+}
+
+@media (max-width: 768px) {
+  .IatemList {
+    text-align: center;
+    padding: 15px;
+  }
+}
