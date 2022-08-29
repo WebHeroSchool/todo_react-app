@@ -12,32 +12,56 @@ class App extends React.Component {
         items: [
             {
               value: 'Create new app',
-              isDone: true
+              isDone: true,
+              id: 1
             },
             {
               value: 'Finish that lesson',
-              isDone: false
+              isDone: false,
+              id: 2
             },
             {
               value: 'Listen webinar',
-              isDone: false
+              isDone: false,
+              id: 3
             }
-        ]
+        ],
+        count: 6
     };
+
+    onClickDone = id => {
+        const newItemList = this.state.items.map(item => {
+            const newItem = { ...item};
+
+            if (item.id === id) {
+                newItem.isDone = !item.isDone;
+            }
+
+            return newItem;
+        });
+
+        this.setState({ items: newItemList });
+    };
+
+    onClickDelete = id => {
+        const removeItemList = this.state.items.filter(item =>
+            item.id !==id);
+        this.setState({ items: removeItemList });
+    }
   
-  render() {
-    return (
-      <div className={styles.wrap}>
-        <Card>
-          <CardContent>
-            <h1 className={styles.title}>todos</h1>
-            <InputItem />
-            <ItemList items={this.state.items} />
-            <Footer count={3} />
-          </CardContent>
-        </Card>
-      </div>);
-    } 
+    render() {
+      return (
+        <div className={styles.wrap}>
+          <Card>
+            <CardContent>
+              <h1 className={styles.title}>todos</h1>
+              <InputItem />
+              <ItemList items={this.state.items} onClickDone={this.onClickDone} onClickDelete={this.onClickDelete} />
+              <Footer count={this.state.count} />
+            </CardContent>
+          </Card>
+        </div>);
+      } 
 };
 
 export default App;
