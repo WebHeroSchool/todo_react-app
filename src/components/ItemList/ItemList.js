@@ -3,8 +3,8 @@ import List from '@mui/material/List';
 
 import Item from '../Item/Item';
 
-const ItemList = ({ items, onClickDone, onClickDelete }) => (<List>
-  {items.map(item => <li key={item.value}>
+const ItemList = ({ todoItems, onClickDone, onClickDelete }) => (<List>
+  {todoItems.map(item => <div key={item.value}>
     <Item 
       value={item.value} 
       isDone={item.isDone} 
@@ -12,7 +12,7 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (<List>
       onClickDone={onClickDone} 
       onClickDelete={onClickDelete}
     />
-  </li>)}
+  </div>)}
 </List>);
 
 export default ItemList;

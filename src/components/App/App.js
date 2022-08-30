@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
@@ -7,61 +7,100 @@ import CardContent from '@mui/material/CardContent';
 
 import styles from './App.module.css';
 
-class App extends React.Component {
-    state = {
-        items: [
-            {
-              value: 'Create new app',
-              isDone: true,
-              id: 1
-            },
-            {
-              value: 'Finish that lesson',
-              isDone: false,
-              id: 2
-            },
-            {
-              value: 'Listen webinar',
-              isDone: false,
-              id: 3
-            }
-        ],
-        count: 6
-    };
+const App = () => {
+  const initialState = {
+    todoItems: [
+      {
+        value: 'Create new app',
+        isDone: true,
+        id: 1
+      },
+      {
+        value: 'Finish that lesson',
+        isDone: false,
+        id: 2
+      },
+      {
+        value: 'Listen webinar',
+        isDone: false,
+        id: 3
+      }
+  ],
+  count: 3,
+  error: false
+  };  
 
-    onClickDone = id => {
-        const newItemList = this.state.items.map(item => {
-            const newItem = { ...item};
+const [todoItems, setTodoItems] = useState(initialState.todoItems);
+const [count, setCount] = useState(initialState.count);
+const [error, setError] = useState(initialState.error);
 
-            if (item.id === id) {
-                newItem.isDone = !item.isDone;
-            }
+useEffect(() => {
+  console.log('componentDidMount')
+}, []);
 
-            return newItem;
-        });
+useEffect(() => {
+  console.log('componentDidUpdete')
+}, []);
 
-        this.setState({ items: newItemList });
-    };
+const onClickDone = (id) => {
+    const newItemList = todoItems.map(item => {
+        const newItem = { ...item};
 
-    onClickDelete = id => {
-        const removeItemList = this.state.items.filter(item =>
-            item.id !==id);
-        this.setState({ items: removeItemList });
-    }
+        if (item.id === id) {
+            newItem.isDone = !item.isDone;
+        }
+
+        return newItem;
+    });
+
+    setTodoItems(newItemList);
+};
+
+const onClickDelete = (id) => {
+    const newItemList = todoItems.filter(item =>
+        item.id !==id)
+
+    setTodoItems(newItemList);    
+};
+
+const onClickAdd = (value) => {
+  if(value !== '') {
+    let newItemList = [
+      ...todoItems,
+      {
+        value,
+        isDone: false,
+        id: count + 1
+      }
+    ];
+    setTodoItems(newItemList)
+    setCount(count + 1)
+    setError(false)
+  } else {
+    setError(true)
+  }
+};
+
+ 
+return (
+  <div className={styles.wrap}>
+    <Card>
+      <CardContent>
+        <h1 className={styles.title}>todos</h1>
+        <InputItem 
+          onClickAdd={onClickAdd}
+          error={error}
+        />
+        <ItemList
+          todoItems = {todoItems}
+          onClickDone = {onClickDone}
+          onClickDelete={onClickDelete}
+        />
+        <Footer count={count} />
+      </CardContent>
+    </Card>
+  </div>);
   
-    render() {
-      return (
-        <div className={styles.wrap}>
-          <Card>
-            <CardContent>
-              <h1 className={styles.title}>todos</h1>
-              <InputItem />
-              <ItemList items={this.state.items} onClickDone={this.onClickDone} onClickDelete={this.onClickDelete} />
-              <Footer count={this.state.count} />
-            </CardContent>
-          </Card>
-        </div>);
-      } 
 };
 
 export default App;

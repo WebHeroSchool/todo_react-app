@@ -5,40 +5,48 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import styles from './Item.module.css';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 
 class Item extends React.Component {
 
   render() {
     const {value, isDone, onClickDone, id, onClickDelete} = this.props;
-    return <span className={
-          classnames({
+    
+    return (
+      <ListItem
+          className={styles.item}>
+        <ListItemIcon>
+        <Checkbox
+            inputProps={{ 'aria-label': 'primary checkbox'}}
+            onClick= {() => onClickDone(id)}
+          />
+        </ListItemIcon>    
+        <ListItemText primary={value} className = {
+          classnames ({
             [styles.item]: true,
             [styles.done]: isDone
           })
-    }>
-  <span>
-    <Checkbox
-      checked={isDone}
-      tabIndex={-1}
-      onClick={() => onClickDone(id)}
-    />
-    {value}
-  </span>
-    <IconButton
-      className={styles.delete}
-      aria-label="delete"
-      onClick={() => onClickDelete(id)}>
-      <DeleteIcon />
-    </IconButton>  
-  </span>}
+        }>
+        </ListItemText>
+        <IconButton aria-label="delete"
+          onClick={() => onClickDelete(id)}>
+        <DeleteIcon  />    
+        </IconButton>
+      </ListItem>);
+  }  
 }
 
 Item.propTypes = {
-  value: PropTypes.string.isRequired,
-  isDone: PropTypes.bool.isRequired,
-  id: PropTypes.number.isRequired,
-  onClickDone: PropTypes.func.isRequired,
-  onClickDelete: PropTypes.func.isRequired,
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+  isDone: PropTypes.bool,
+  id: PropTypes.number,
+  onClickDone: PropTypes.func,
+  onClickDelete: PropTypes.func
 }
 export default Item;
