@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.css';
 import Button from '@mui/material/Button';
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 const buttons = [
@@ -20,8 +20,12 @@ const Footer = ({ count }) => (<footer className={styles.footer}>
   <button className={styles.clear}>Clear Completed</button>  
 </footer>);
 
+Footer.defaultProps = {
+  count: 0
+};
+
 Footer.propTypes = {
-  count: PropTypes.number
-}
+  count: propTypes.number.isRequired
+};
 
 export default Footer;
