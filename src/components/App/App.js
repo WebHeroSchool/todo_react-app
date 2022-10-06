@@ -96,7 +96,7 @@ return (
           onClickDone = {onClickDone}
           onClickDelete={onClickDelete}
         />
-        <Footer count={count} />
+        <Footer />
       </CardContent>
     </Card>
   </div>);
