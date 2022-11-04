@@ -1,10 +1,10 @@
 import React from 'react';
-import  Octokit  from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 import LinearProgress from '@mui/material/LinearProgress';
 
-import  CardContent  from '@mui/material/CardContent';
-
+import classNames from 'classnames';
 import styles from '../About/About.module.css';
+import arrow from '../About/arrow.png';
 
 
 const octokit = new Octokit();
@@ -108,7 +108,7 @@ class  About extends React.Component {
                       <div className={styles.iconsBox}>
                         <div className={styles.icons}>
                           <a className={styles.github} target="_blank" rel = "noreferrer" href="https://github.com/aartemenko0"> </a>
-                          <a className={styles.linkedin} target="_blank" rel = "noreferrer" href="www.linkedin.com/in/alinaartemenko"> </a>
+                          <a className={styles.linkedin} target="_blank" rel = "noreferrer" href="https://www.linkedin.com/in/alinaartemenko"> </a>
                         </div>
                       </div>
                     </div>
