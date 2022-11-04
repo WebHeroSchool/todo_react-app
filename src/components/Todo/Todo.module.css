@@ -1,0 +1,9 @@
+.wrap {
+  display: block;
+  margin: auto;
+  width: 360px;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+}

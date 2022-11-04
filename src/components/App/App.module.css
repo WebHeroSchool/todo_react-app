@@ -1,9 +1,28 @@
-.wrap {
-  display: block;
-  margin: auto;
-  width: 360px;
+body {
+  padding-top: 36px;
+  background: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.title {
-  font-family: Arial, Helvetica, sans-serif;
+.link {
+  text-decoration: none;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+}
+
+.wrap {
+  display: grid;
+  grid-template-areas: 'sidebar ... content content';
+  margin: auto;
+  width: 500px;
+}
+
+.link {
+  color: rgb(168 54 54 / 36%);
 }
